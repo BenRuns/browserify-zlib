@@ -23,7 +23,6 @@ var Transform = require('_stream_transform');
 
 var binding = require('./binding');
 var util = require('util');
-var assert = require('assert').ok;
 
 // zlib doesn't provide these, so kludge them in following the same
 // const naming scheme zlib uses.
@@ -549,7 +548,7 @@ Zlib.prototype._processChunk = function(chunk, flushFlag, cb) {
       return;
 
     var have = availOutBefore - availOutAfter;
-    assert(have >= 0, 'have should not go down');
+    if(!have >= 0){ throw new Error('have should not go down'); }
 
     if (have > 0) {
       var out = self._buffer.slice(self._offset, self._offset + have);
