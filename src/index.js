@@ -548,7 +548,7 @@ Zlib.prototype._processChunk = function(chunk, flushFlag, cb) {
       return;
 
     var have = availOutBefore - availOutAfter;
-    if(!have >= 0){ throw new Error('have should not go down'); }
+    if(have >= 0){ throw new Error('have should not go down'); }
 
     if (have > 0) {
       var out = self._buffer.slice(self._offset, self._offset + have);
